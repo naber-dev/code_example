@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Example for if & attr</title>
+</head>
+<body>
+<main>
+    <div>
+        <h1>CSS - Example for if & attr</h1>
+        <p>In this example, we use the <code>if</code> and <code>attr</code> CSS functions to conditionally style
+            elements based on their attributes.</p>
+        <div class="example">
+            <div class="box" data-color="red">Red Box</div>
+            <div class="box" data-color="green">Green Box</div>
+            <div class="box" data-color="blue">Blue Box</div>
+        </div>
+    </div>
+</main>
+<style>
+    h1 {
+        font-size: 2rem;
+        color: #333;
+    }
+
+    p {
+        color: #333;
+    }
+
+    .box {
+        margin: 10px;
+        display: inline-block;
+        color: white;
+        text-align: center;
+        align-content: center;
+        background-color: attr(data-color type(<color>));
+        height: 100px;
+        --color-string: attr(data-color);
+        width: if(
+        style(--color-string: "red"): 150px;
+        else: 100px;
+    )
+    }
+
+
+</style>
+</body>
+</html>

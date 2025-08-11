@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - if Statement examples</title>
+</head>
+<body>
+<main>
+    <div class="container">
+        <h2>CSS If Example</h2>
+        <p>This example demonstrates the use of the <code>if</code> statement in CSS to conditionally apply styles.</p>
+    </div>
+    <div class="example">
+        <div class="box" style="--color-string: red"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+</main>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: if(
+        media(print):#fff;
+        else: #f4f4f4;
+    );
+        margin: 0;
+        padding: 20px;;
+    }
+
+    .example {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: if(
+        media(width < 600px): 1fr;
+        media((width > 600px) and (width < 900px)): repeat(2, 1fr);
+        else: repeat(4, 1fr);
+    )
+    }
+
+    .box {
+        width: auto;
+        height: 100px;
+        background-color: if(
+        style(--color-string: red): #f00;
+        supports(color: lch(10% 100 130 / 0.5)): lch(10% 100 130 / 0.5);
+        else: #3f3f3f;
+        );
+    }
+
+</style>
+</body>
+</html>

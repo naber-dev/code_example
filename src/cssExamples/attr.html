@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS - Attr</title>
+</head>
+<body>
+<main>
+    <div>
+        <h1>CSS - Attr Example</h1>
+        <p>This example demonstrates the use of the <code>attr()</code> function in CSS to style elements based on their
+            attributes.</p>
+        <div class="example">
+            <div class="box" data-color="red" data-height="100" data-width="100px">Red Box</div>
+            <div class="box" data-color="green" data-height="150" data-width="120px">Green Box</div>
+            <div class="box" data-color="blue" data-height="120" data-width="150px">Blue Box</div>
+        </div>
+    </div>
+</main>
+<style>
+    @supports (x: attr(x type(*))) {
+        /* Browser has modern attr() support */
+        .box {
+            margin: 10px;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            align-content: center;
+            background-color: attr(data-color type(<color>));
+            height: attr(data-height px);
+            width: attr(data-width type(<length>));
+        }
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #333;
+    }
+
+    p {
+        color: #333;
+    }
+</style>
+</body>
+</html>
