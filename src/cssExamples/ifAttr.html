@@ -5,8 +5,8 @@
     <title>CSS - Example for if & attr</title>
 </head>
 <body>
-<main>
-    <div>
+<main data-theme="light">
+    <div class="grid" data-cols="1">
         <h1>CSS - Example for if & attr</h1>
         <p>In this example, we use the <code>if</code> and <code>attr</code> CSS functions to conditionally style
             elements based on their attributes.</p>
@@ -18,30 +18,49 @@
     </div>
 </main>
 <style>
-    h1 {
-        font-size: 2rem;
-        color: #333;
+   main {
+        --theme: attr(data-theme);
+        background-color: if(
+            style(--theme: "light"): #f4f4f4;
+            style(--theme: "dark"): #333;
+            else: #fff;
+        );
+        color: if(
+            style(--theme: "light"): #333;
+            style(--theme: "dark"): #fff;
+            else: #000;
+        );
+        font-family: Arial, sans-serif;
     }
 
-    p {
-        color: #333;
+   .grid {
+        display: grid;
+        gap: 1rem;
+        --cols: attr(data-cols type(<integer>));
+        grid-template-columns: if(
+            style(--cols): repeat(var(--cols), 1fr);
+            else: repeat(3, 1fr);
+        );
     }
 
     .box {
         margin: 10px;
         display: inline-block;
-        color: white;
+        color: #fff;
         text-align: center;
         align-content: center;
         background-color: attr(data-color type(<color>));
         height: 100px;
         --color-string: attr(data-color);
         width: if(
-        style(--color-string: "red"): 150px;
-        else: 100px;
-    )
+            style(--color-string: "red"): 150px;
+            else: 100px;
+        )
     }
 
+    h1 {
+        font-size: 2rem;
+    }
 
 </style>
 </body>
