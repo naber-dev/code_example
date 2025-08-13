@@ -5,6 +5,154 @@
     <title>CSS – @container Examples</title>
 </head>
 <body>
+<nav>
+    <ul>
+        <li>Lorem</li>
+        <li>Ipsum</li>
+        <li>Dolor</li>
+        <li>Sit</li>
+        <li>Amet</li>
+    </ul>
+</nav>
+<main>
+    <div class="stage">
+        <h1>CSS – @container Examples</h1>
+        <p>This example demonstrates the use of the <code>@container</code> rule in CSS to apply styles based on the
+            size of a container.</p>
+        <div class="container">
+            <div class="box">Box 1</div>
+            <div class="box">Box 2</div>
+            <div class="box">Box 3</div>
+        </div>
+        <p>Resize the container to see the styles change.</p>
+    </div>
+    <div class="grid">
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <h2>Container Styles</h2>
+                    <p>This container will change its background color based on its size.</p>
+                    <div class="box">Resize me!</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container">
+                    <div class="content">
+                        <h2>Nested Container</h2>
+                        <p>This is a nested container that will also change its styles based on its size.</p>
+                        <div class="box">Nested Resize me!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
 
+    nav {
+        container: nav-container / inline-size;
+        display: grid;
+        background-color: #333;
+        color: white;
+        padding: 48px;
+
+        ul {
+            display: inline-flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 32px;
+
+            @container nav-container (width < 400px) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            li {
+                cursor: pointer;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: #ff6347;
+                }
+            }
+        }
+    }
+
+    main {
+        padding: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        h1 {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .col {
+            container: col / inline-size;
+            flex: 1;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            container:content / inline-size;
+            padding: 16px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+            @container col (width > 200px) {
+                background-color: #cceeff;
+            }
+
+            @container col (width > 400px) {
+                background-color: #b3ffcc;
+            }
+
+            .content {
+                container: inherit;
+                text-align: center;
+            }
+
+            .box {
+                background-color: #007bff;
+                color: white;
+                padding: 16px;
+                border-radius: 4px;
+                margin-top: 16px;
+                transition: background-color 0.3s;
+
+                @container content (width > 400px) {
+                    background-color: #0056b3;
+                }
+
+                @container content (width > 600px) {
+                    background-color: #003f7f;
+                }
+            }
+        }
+
+    }
+</style>
 </body>
 </html>
